@@ -30,7 +30,7 @@
         if (serviceWorker) {
           document.getElementById('state').innerHTML = serviceWorker.state;
           serviceWorker.addEventListener('statechange', function(e) {
-            document.getElementById('status').innerHTML = e.target.state;
+            document.getElementById('state').innerHTML = e.target.state;
           });
         }
       }).catch(function(error) {
