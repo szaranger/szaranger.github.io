@@ -13,7 +13,7 @@
       navigator.serviceWorker.register(
         'service-worker.js',
         { scope: './' }
-      ).then( function(serviceWorker) {
+      ).then( function(registration) {
         document.getElementById('status').innerHTML = 'successful';
 
         var serviceWorker;
