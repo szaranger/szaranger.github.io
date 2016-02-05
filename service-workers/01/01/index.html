@@ -8,8 +8,6 @@
   <p>Registration status: <strong id="status"></strong></p>
 
   <script>
-    var status = document.getElementById('status');
-
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register(
         'service-worker.js',
@@ -17,16 +15,16 @@
       ).then( function(serviceWorker) {
         document.getElementById('status').innerHTML = 'successful';
 
-        // setTimeout(function() {
-        //   serviceWorker.unregister().then(function() {
-        //     status.innerHTML = 'unregistered';
-        //   }, 5000);
-        // });
+        setTimeout(function() {
+          serviceWorker.unregister().then(function() {
+            status.innerHTML = 'unregistered';
+          }, 5000);
+        });
       }).catch(function(error) {
-        status.innerHTML = error;
+        document.getElementById('status').innerHTML = error;
       });
     } else {
-        status.innerHTML = 'unavailable';
+        document.getElementById('status').innerHTML = 'unavailable';
       }
   </script>
 </body>
