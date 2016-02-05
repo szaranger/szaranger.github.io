@@ -17,11 +17,11 @@
       ).then( function(serviceWorker) {
         status.innerHTML = 'successful';
 
-        setTimeout(function() {
-          serviceWorker.unregister().then(function() {
-            status.innerHTML = 'unregistered';
-          }, 5000);
-        });
+        // setTimeout(function() {
+        //   serviceWorker.unregister().then(function() {
+        //     status.innerHTML = 'unregistered';
+        //   }, 5000);
+        // });
       }).catch(function(error) {
         status.innerHTML = error;
       });
