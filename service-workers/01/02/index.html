@@ -9,28 +9,37 @@
   <p>State: <strong id="state"></strong></p>
 
   <script>
+    function setState(state) {
+      document.getElementById('state').innerHTML = state
+    }
+
     if ('serviceWorker' in navigator) {
+
       navigator.serviceWorker.register(
         'service-worker.js',
         { scope: './' }
+        
       ).then( function(registration) {
+        var serviceWorker;
+
         document.getElementById('status').innerHTML = 'successful';
 
-        var serviceWorker;
         if (registration.installing) {
           serviceWorker = registration.installing;
-          document.getElementById('state').innerHTML = 'installing';
+          setState('installing');
         } else if (registration.waiting) {
           serviceWorker = registration.waiting;
-          document.getElementById('state').innerHTML = 'waiting';
+          setState('waiting');
         } else if (registration.active) {
           serviceWorker = registration.active;
-          document.getElementById('state').innerHTML = 'active';
+          setState('active');
         }
+
         if (serviceWorker) {
-          document.getElementById('state').innerHTML = serviceWorker.state;
+          setState(serviceWorker.state);
+
           serviceWorker.addEventListener('statechange', function(e) {
-            document.getElementById('state').innerHTML = e.target.state;
+            setState(e.target.state);
           });
         }
       }).catch(function(error) {
