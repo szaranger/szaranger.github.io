@@ -15,11 +15,12 @@
       ).then( function(serviceWorker) {
         document.getElementById('status').innerHTML = 'successful';
 
-        setTimeout(function() {
+        // Uncomment the following code block to unregister the service worker
+        /*setTimeout(function() {
           serviceWorker.unregister().then(function() {
             document.getElementById('status').innerHTML = 'unregistered';
-          }, 10000);
-        });
+          }, 3000);
+        });*/
       }).catch(function(error) {
         document.getElementById('status').innerHTML = error;
       });
