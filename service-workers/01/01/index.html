@@ -15,7 +15,7 @@
         'service-worker.js',
         { scope: './' }
       ).then( function(serviceWorker) {
-        status.innerHTML = 'successful';
+        document.getElementById('status').innerHTML = 'successful';
 
         // setTimeout(function() {
         //   serviceWorker.unregister().then(function() {
