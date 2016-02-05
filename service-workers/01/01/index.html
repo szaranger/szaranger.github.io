@@ -8,17 +8,25 @@
   <p>Registration status: <strong id="status"></strong></p>
 
   <script>
+    var status = document.getElementById('status').innerHTML;
+
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register(
         'service-worker.js',
         { scope: './' }
-      ).then( function(registration) {
-        document.getElementById('status').innerHTML = 'successful';
+      ).then( function(serviceWorker) {
+        status = 'successful';
+
+        setTimeout(function() {
+          serviceWorker.unregister().then(function() {
+            status = 'unregistered';
+          }, 5000);
+        });
       }).catch(function(error) {
-        document.getElementById('status').innerHTML = error;
+        status = error;
       });
     } else {
-        document.getElementById('status').innerHTML = 'unavailable';
+        status = 'unavailable';
       }
   </script>
 </body>
