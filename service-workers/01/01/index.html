@@ -18,7 +18,7 @@
         setTimeout(function() {
           serviceWorker.unregister().then(function() {
             document.getElementById('status').innerHTML = 'unregistered';
-          }, 5000);
+          }, 10000);
         });
       }).catch(function(error) {
         document.getElementById('status').innerHTML = error;
