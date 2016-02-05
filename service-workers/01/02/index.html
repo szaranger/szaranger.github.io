@@ -9,8 +9,8 @@
   <p>State: <strong id="state"></strong></p>
 
   <script>
-    function setState(state) {
-      document.getElementById('state').innerHTML = state
+    function printState(state) {
+      document.getElementById('state').innerHTML = state;
     }
 
     if ('serviceWorker' in navigator) {
@@ -18,7 +18,6 @@
       navigator.serviceWorker.register(
         'service-worker.js',
         { scope: './' }
-        
       ).then( function(registration) {
         var serviceWorker;
 
@@ -26,20 +25,20 @@
 
         if (registration.installing) {
           serviceWorker = registration.installing;
-          setState('installing');
+          printState('installing');
         } else if (registration.waiting) {
           serviceWorker = registration.waiting;
-          setState('waiting');
+          printState('waiting');
         } else if (registration.active) {
           serviceWorker = registration.active;
-          setState('active');
+          printState('active');
         }
 
         if (serviceWorker) {
-          setState(serviceWorker.state);
+          printState(serviceWorker.state);
 
           serviceWorker.addEventListener('statechange', function(e) {
-            setState(e.target.state);
+            printState(e.target.state);
           });
         }
       }).catch(function(error) {
