@@ -5,7 +5,7 @@
   <title>Detailed Registration</title>
 </head>
 <body>
-  <p>Registration status: <strong id="status"></strong></p>
+  <p>Network status: <strong id="status"></strong></p>
   <div id="request" style="display: none">
         <input id="original-url" value="https://www.google.com/" size="50">
           <button id="shorten-button">Shorten</button>
@@ -16,8 +16,8 @@
   </div>
 
   <script>
-    function printState(state) {
-      document.getElementById('state').innerHTML = state;
+    function printStatus(status) {
+      document.getElementById('state').innerHTML = status;
     }
 
     function showRequest() {
@@ -55,10 +55,12 @@
         'service-worker.js',
         { scope: './' }
       ).then( function(registration) {
-        var serviceWorker;
-
-        document.getElementById('status').innerHTML = 'successful';
-
+        if (navigator.serviceWorker.controller) {
+            printStatus('The service worker is currently handling network operations.');
+            showRequest();
+          } else {
+            printStatus('Please reload this page to allow the service worker to handle network operations.');
+          }
       }).catch(function(error) {
         document.getElementById('status').innerHTML = error;
       });
