@@ -1,5 +1,5 @@
 self.addEventListener('fetch', function(event) {
-  console.log('Handling fetch event for', e.request.url);
+  console.log('Handling fetch event for', event.request.url);
   var requestUrl = new URL(event.request.url);
 
   if (requestUrl.pathname === '/urlshortener/v1/url' &&
