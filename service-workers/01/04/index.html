@@ -13,15 +13,12 @@
         request;
 
       xhr.open('POST',
-        'https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyCr0XVB-Hz1ohPpjvLatdj4qZ5zcSohHsU');
+        'https://www.AIzaSyCr0XVB-Hz1ohPpjvLatdj4qZ5zcSohHsU.com');
       xhr.setRequestHeader('Content-Type', 'application/json');
 
       xhr.addEventListener('load', function() {
         var response = JSON.parse(xhr.response);
-        //var el = document.getElementById('short-url');
 
-        //el.href = response.id;
-        //el.innerHTML = response.id;
       });
 
       request = {

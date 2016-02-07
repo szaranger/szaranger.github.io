@@ -1,5 +1,5 @@
 var REQUEST_TIMEOUT_STATUS = 408,
- DELAY = 3000;
+ DELAY = 2000;
 
 
 function timeout(delay) {
