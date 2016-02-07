@@ -5,25 +5,25 @@ self.addEventListener('fetch', function(event) {
   if (requestUrl.pathname === '/urlshortener/v1/url' &&
       event.request.headers.has('X-Mock-Response')) {
 
-    var responseBody = {
-      kind: 'urlshortener#url',
-      id: 'http://goo.gl/IKyjuU',
-      longUrl: 'https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html'
-    };
-
-    var responseInit = {
-
-      status: 200,
-      statusText: 'OK',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Mock-Response': 'yes'
+    var response = {
+      body: {
+        kind: 'urlshortener#url',
+        id: 'http://goo.gl/IKyjuU',
+        longUrl: 'https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html'
+      },
+      init: {
+        status: 200,
+        statusText: 'OK',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Mock-Response': 'yes'
+        }
       }
     };
 
-    var mockResponse = new Response(JSON.stringify(responseBody), responseInit);
+    var mockResponse = new Response(JSON.stringify(response.body), response.init);
 
-    console.log('Responding with a mock response body:', responseBody);
+    console.log('Responding with a mock response body:', response.body);
     event.respondWith(mockResponse);
   }
 });
