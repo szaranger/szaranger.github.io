@@ -6,7 +6,14 @@
 </head>
 <body>
   <p>Registration status: <strong id="status"></strong></p>
-  <p>State: <strong id="state"></strong></p>
+  <div id="request" style="display: none">
+        <input id="original-url" value="https://www.google.com/" size="50">
+          <button id="shorten-button">Shorten</button>
+        </div>
+        <div>
+          <input id="mock-checkbox" type="checkbox" checked>Mock Response</input>
+        </div>
+  </div>
 
   <script>
     function printState(state) {
