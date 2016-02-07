@@ -1,5 +1,4 @@
 self.addEventListener('fetch', function(event) {
-  console.log('Handling fetch event for', event.request.url);
   var requestUrl = new URL(event.request.url);
 
   if (requestUrl.pathname === '/urlshortener/v1/url' &&
@@ -8,8 +7,8 @@ self.addEventListener('fetch', function(event) {
     var response = {
       body: {
         kind: 'urlshortener#url',
-        id: 'http://goo.gl/IKyjuU',
-        longUrl: 'https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html'
+        id: 'https://goo.gl/KqR3lJ',
+        longUrl: 'https://www.packtpub.com/books/info/packt/about'
       },
       init: {
         status: 200,
@@ -23,7 +22,7 @@ self.addEventListener('fetch', function(event) {
 
     var mockResponse = new Response(JSON.stringify(response.body), response.init);
 
-    console.log('Responding with a mock response body:', response.body);
+    console.log('Mock Response: ', response.body);
     event.respondWith(mockResponse);
   }
 });

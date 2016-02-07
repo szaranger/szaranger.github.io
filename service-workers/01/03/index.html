@@ -25,11 +25,11 @@
     }
 
     function showRequest() {
-      document.getElementById('url-shorten-btn').addEventListener('click', makeApiRequest);
+      document.getElementById('url-shorten-btn').addEventListener('click', sendRequest);
       document.getElementById('request').style.display = 'block';
     }
 
-    function makeApiRequest() {
+    function sendRequest() {
       var xhr = new XMLHttpRequest(),
         request,
         requestJson;
@@ -53,9 +53,8 @@
       request = {
         longUrl: document.getElementById('long-url').value
       };
-      requestJson = JSON.stringify(request);
 
-      xhr.send(requestJson);
+      xhr.send(JSON.stringify(request));
     }
 
     if ('serviceWorker' in navigator) {
