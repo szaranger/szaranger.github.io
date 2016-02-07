@@ -44,10 +44,10 @@
 
       xhr.addEventListener('load', function() {
         var response = JSON.parse(xhr.response);
-        console.log('Response is', response);
-        var shortUrlElement = document.getElementById('short-url');
-        shortUrlElement.href = response.id;
-        shortUrlElement.textContent = response.id;
+        var el = document.getElementById('short-url');
+
+        el.href = response.id;
+        el.innerHTML = response.id;
       });
 
       request = {
