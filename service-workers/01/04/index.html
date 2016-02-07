@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Basic Registration</title>
+  <title>Request Timeouts</title>
 </head>
 <body>
   <p>Registration status: <strong id="status"></strong></p>
@@ -12,12 +12,14 @@
       navigator.serviceWorker.register(
         'service-worker.js',
         { scope: './' }
-      ).then( function(serviceWorker) {
+      ).then(function(serviceWorker) {
         document.getElementById('status').innerHTML = 'successful';
-
+      }).catch(function(error) {
+        document.getElementById('status').innerHTML = error;
+      });
     } else {
-        document.getElementById('status').innerHTML = 'unavailable';
-      }
+      document.getElementById('status').innerHTML = 'unavailable';
+    }
   </script>
 </body>
 </html>
