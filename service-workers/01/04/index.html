@@ -6,6 +6,7 @@
 </head>
 <body>
   <p>Registration status: <strong id="status"></strong></p>
+  <p>Fetching progress: <strong id="progress"></strong></p>
 
   <script>
 
@@ -15,10 +16,11 @@
         { scope: './' }
       ).then(function(serviceWorker) {
         document.getElementById('status').innerHTML = 'successful';
+        document.getElementById('progress').innerHTML = 'fetching ...';
         fetch('https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js', {
         	method: 'get'
         }).then(function(response) {
-
+          document.getElementById('progress').innerHTML = 'completed';
         }).catch(function(error) {
         	document.getElementById('status').innerHTML = error;
         });
