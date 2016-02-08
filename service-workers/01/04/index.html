@@ -8,15 +8,6 @@
   <p>Registration status: <strong id="status"></strong></p>
 
   <script>
-    function sendRequest() {
-      fetch('https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyCr0XVB-Hz1ohPpjvLatdj4qZ5zcSohHsU&shortUrl=Test', {
-      	method: 'get'
-      }).then(function(response) {
-
-      }).catch(function(err) {
-      	// Error :(
-      });
-    }
 
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register(
@@ -24,7 +15,6 @@
         { scope: './' }
       ).then(function(serviceWorker) {
         document.getElementById('status').innerHTML = 'successful';
-        sendRequest();
       }).catch(function(error) {
         document.getElementById('status').innerHTML = error;
       });
