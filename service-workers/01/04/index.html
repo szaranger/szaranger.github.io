@@ -9,11 +9,10 @@
 
   <script>
     function sendRequest() {
-      var xhr = new XMLHttpRequest(),
-        request;
+      var xhr = new XMLHttpRequest();
 
-      xhr.open('POST',
-        'https://www.packt.com');
+      xhr.open('GET',
+        'https://www.packtpub.com/');
          xhr.setRequestHeader('Content-Type',
          'application/json');
 
@@ -22,11 +21,7 @@
 
       });
 
-      request = {
-        longUrl: 'https://www.packt.com'
-      };
-
-      xhr.send(JSON.stringify(request));
+      xhr.send();
     }
 
     if ('serviceWorker' in navigator) {
