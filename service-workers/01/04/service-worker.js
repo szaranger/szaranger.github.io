@@ -1,11 +1,10 @@
-var REQUEST_TIMEOUT_STATUS = 408;
-console.log('sw.js loaded..');
+console.log('service-wroker.js loaded..');
 
 function timeout(delay) {
     return new Promise(function(resolve, reject) {
         setTimeout(function() {
             resolve(new Response('', {
-                status: REQUEST_TIMEOUT_STATUS,
+                status: 408,
                 statusText: 'Request timed out.'
             }));
         }, delay);
