@@ -1,5 +1,4 @@
-var REQUEST_TIMEOUT_STATUS = 408,
- DELAY = 2000;
+var REQUEST_TIMEOUT_STATUS = 408;
 
 
 function timeout(delay) {
@@ -25,7 +24,7 @@ self.addEventListener('activate', function(event) {
 
 self.addEventListener('fetch', function(event) {
   if (/\.js$/.test(event.request.url)) {
-    event.respondWith(Promise.race([timeout(500), fetch(event.request.url)]));
+    event.respondWith(Promise.race([timeout(300), fetch(event.request.url)]));
   } else {
     event.respondWith(fetch(event.request));
   }
