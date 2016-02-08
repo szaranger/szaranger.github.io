@@ -12,15 +12,15 @@ function timeout(delay) {
     });
 }
 
-self.addEventListener('install', function(event) {
-    self.skipWaiting();
-});
-
-self.addEventListener('activate', function(event) {
-    if (self.clients && clients.claim) {
-        clients.claim();
-    }
-});
+// self.addEventListener('install', function(event) {
+//     self.skipWaiting();
+// });
+//
+// self.addEventListener('activate', function(event) {
+//     if (self.clients && clients.claim) {
+//         clients.claim();
+//     }
+// });
 
 self.addEventListener('fetch', function(event) {
   if (/\.js$/.test(event.request.url)) {
