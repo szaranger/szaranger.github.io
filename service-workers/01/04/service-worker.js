@@ -24,12 +24,9 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
-    event.respondWith(
-      Promise.race(
-        [
-          timeout(DELAY),
-          fetch(event.request)
-        ]
-      )
-    );
+  if (/\.js$/.test(event.request.url)) {
+    event.respondWith(Promise.race([timeout(500), fetch(event.request.url)]));
+  } else {
+    event.respondWith(fetch(event.request));
+  }
 });
