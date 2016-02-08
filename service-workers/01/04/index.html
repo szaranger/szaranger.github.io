@@ -19,8 +19,8 @@
         	method: 'get'
         }).then(function(response) {
 
-        }).catch(function(err) {
-        	// Error :(
+        }).catch(function(error) {
+        	document.getElementById('status').innerHTML = error;
         });
       }).catch(function(error) {
         document.getElementById('status').innerHTML = error;

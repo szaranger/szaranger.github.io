@@ -1,5 +1,5 @@
 var REQUEST_TIMEOUT_STATUS = 408;
-
+console.log('sw.js loaded..');
 
 function timeout(delay) {
     return new Promise(function(resolve, reject) {
