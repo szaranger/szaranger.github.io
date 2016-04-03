@@ -1,0 +1,18 @@
+[
+   {
+      "people":[
+         {
+            "firstName":"Paul",
+            "lastName":"Irish"
+         },
+         {
+            "firstName":"Yehuda",
+            "lastName":"Katz"
+         },
+         {
+            "firstName":"Michael",
+            "lastName":"Jackson"
+         }
+      ]
+   }
+]
