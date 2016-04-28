@@ -22,19 +22,19 @@ function cacheEntry(entry) {
 
     entry.getData(blobWriter, function(data) {
       return openCache().then(function(cache) {
-        var location = getFileLocation(entry.filename);
-        var response = new Response(data, { headers: {
-          'Content-Type': getContentType(entry.filename)
-        } });
+        var fileLocation = getFileLocation(entry.filename),
+          response = new Response(data, { headers: {
+            'Content-Type': getContentType(entry.filename)
+          } });
 
-        console.log('CACHE: Caching', location,
+        console.log('CACHE: Caching', fileLocation,
                     '(size:', entry.uncompressedSize, 'bytes)');
 
         if (entry.filename === ROOT) {
           cache.put(getFileLocation(), response.clone());
         }
 
-        return cache.put(location, response);
+        return cache.put(fileLocation, response);
       }).then(fulfill, reject);
     });
   });
