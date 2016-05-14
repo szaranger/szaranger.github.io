@@ -1,11 +1,13 @@
-[
-    {
-      "name": "Apple"
-    },
-    {
-      "name": "Google"
-    },
-    {
-      "name": "Facebook"
-    }
-]
+{
+    brands: [
+        {
+          "name": "Apple"
+        },
+        {
+          "name": "Google"
+        },
+        {
+          "name": "Facebook"
+        }
+    ]
+}
