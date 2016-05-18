@@ -1,0 +1,84 @@
+{
+  "today": [
+		{
+		  "id": 1, 
+		  "Name": "Horse race 1", 
+		  "Events": [
+  			{"EventID": 1234},
+  			{"EventID": 1234},
+  			{"EventID": 1234},
+  			{"EventID": 1234},
+  			{"EventID": 1234},
+  			{"EventID": 1234},
+  			{"EventID": 1234}
+  		]
+		},
+		{
+		  "id": 2, 
+		  "Name": "Horse race 2", 
+		  "Events": [
+  			{"EventID": 1234},
+  			{"EventID": 1234},
+  			{"EventID": 1234},
+  			{"EventID": 1234},
+  			{"EventID": 1234},
+  			{"EventID": 1234},
+  			{"EventID": 1234}
+  		]
+		}
+	],
+	"yesterday": [
+		{
+		  "id": 1, 
+		  "Name": "Horse race 1", 
+		  "Events": [
+  			{"EventID": 1234},
+  			{"EventID": 1234},
+  			{"EventID": 1234}
+  		]
+		},
+		{
+		  "id": 2, 
+		  "Name": "Horse race 2", 
+		  "Events": [
+  			{"EventID": 1234}
+  		]
+		}
+	],
+	"tomorrow": [
+			{
+		  "id": 1, 
+		  "Name": "Horse race 1", 
+		  "Events": [
+  			{"EventID": 1234},
+  			{"EventID": 1234},
+  			{"EventID": 1234}
+  		]
+		},
+		{
+		  "id": 2, 
+		  "Name": "Horse race 2", 
+		  "Events": [
+  			{"EventID": 1234}
+  		]
+		}
+	],
+	"saturday": [
+		{
+		  "id": 1, 
+		  "Name": "Horse race 1", 
+		  "Events": [
+  			{"EventID": 1234},
+  			{"EventID": 1234},
+  			{"EventID": 1234}
+  		]
+		},
+		{
+		  "id": 2, 
+		  "Name": "Horse race 2", 
+		  "Events": [
+  			{"EventID": 1234}
+  		]
+		}
+	]
+}
