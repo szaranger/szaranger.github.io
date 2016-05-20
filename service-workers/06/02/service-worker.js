@@ -1,57 +1,55 @@
 importScripts('circuit-breaker.js');
 
-var version = 1;
+var version = 1,
+  circuitBreakers = {},
+  opt = {
+      errorThreshold: 50,
+      timeoutDuration: 2000,
+      volumeThrehold: 2,
+      windowDuraion: 1000
+  };
 
-self.addEventListener('install', function(event) {
+self.addEventListener('install', function(evt) {
     self.skipWaiting();
 });
 
-self.addEventListener('activate', function(event) {
+self.addEventListener('activate', function(evt) {
     if (self.clients && clients.claim) {
         clients.claim();
     }
 });
 
 CB.prototype.fetch = function(request) {
-    var unavailableResponse = Response.error();
+    var unavailableRes = Response.error();
 
     return new Promise(function(resolve, reject) {
         this.run(function(success, fail) {
-            fetch(request).then(function(response) {
-                if(response.status < 400) {
+            fetch(request).then(function(res) {
+                if(res.status < 400) {
                     success();
                     console.log('FETCH: successful');
                 } else {
                     fail();
                     console.log('FETCH: failed');
                 }
-                resolve(response);
-            })
-            .catch(function(err) {
+                resolve(res);
+            }).catch(function(err) {
                 fail();
-                reject(unavailableResponse);
+                reject(unavailableRes);
                 console.log('FETCH: unavilable');
             });
         }, function() {
-            resolve(unavailableResponse);
+            resolve(unavailableRes);
         });
     }.bind(this));
 };
 
-var circuitBreakers = {};
-var options = {
-    windowDuraion: 1000,
-    timeoutDuration: 3000,
-    errorThreshold: 50,
-    volumeThrehold: 2
-};
-
-self.addEventListener('fetch', function(event) {
-    var url = event.request.url;
+self.addEventListener('fetch', function(evt) {
+    var url = evt.request.url;
 
     if(!circuitBreakers[url]) {
-        circuitBreakers[url] = new CB(options);
+        circuitBreakers[url] = new CB(opt);
     }
 
-    event.respondWith(circuitBreakers[url].fetch(event.request));
+    evt.respondWith(circuitBreakers[url].fetch(evt.request));
 });
