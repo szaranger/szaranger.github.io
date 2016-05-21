@@ -19,7 +19,7 @@ self.addEventListener('activate', function(evt) {
     }
 });
 
-CB.prototype.fetch = function(request) {
+CircuitBreaker.prototype.fetch = function(request) {
     var unavailableRes = Response.error();
 
     return new Promise(function(resolve, reject) {
@@ -48,7 +48,7 @@ self.addEventListener('fetch', function(evt) {
     var url = evt.request.url;
 
     if(!circuitBreakers[url]) {
-        circuitBreakers[url] = new CB(opt);
+        circuitBreakers[url] = new CircuitBreaker(opt);
     }
 
     evt.respondWith(circuitBreakers[url].fetch(evt.request));
