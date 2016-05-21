@@ -2,7 +2,7 @@ var CircuitBreaker = (function() {
   'use strict';
 
   var TEN_SECONDS = 10000,
-    TEN_BUCKETS = 10,
+    TEN_BLOCKS = 10,
     THREE_SECONDS = 3000,
     FIFTY_PERCENT = 50,
     FIVE = 5;
@@ -11,7 +11,7 @@ var CircuitBreaker = (function() {
     opts = opts || {};
 
     this.errorThreshold  = opts.errorThreshold || FIFTY_PERCENT;
-    this.numBlocks = opts.numBlocks || TEN_BUCKETS;
+    this.numBlocks = opts.numBlocks || TEN_BLOCKS;
     this.timeoutDuration = opts.timeoutDuration || THREE_SECONDS;
     this.volumeThreshold = opts.volumeThreshold || FIVE;
     this.windowDuration  = opts.windowDuration || TEN_SECONDS;
