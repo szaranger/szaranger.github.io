@@ -11,7 +11,7 @@ var CircuitBreaker = (function() {
     opts = opts || {};
 
     this.errorThreshold  = opts.errorThreshold || FIFTY_PERCENT;
-    this.numBuckets = opts.numBuckets || TEN_BUCKETS;
+    this.numBlocks = opts.numBlocks || TEN_BUCKETS;
     this.timeoutDuration = opts.timeoutDuration || THREE_SECONDS;
     this.volumeThreshold = opts.volumeThreshold || FIVE;
     this.windowDuration  = opts.windowDuration || TEN_SECONDS;
@@ -19,7 +19,7 @@ var CircuitBreaker = (function() {
     this.hanldeCircuitOpen   = opts.hanldeCircuitOpen  || function() {};
     this.handleCircuitClose  = opts.handleCircuitClose || function() {};
 
-    this.$buckets = [this.$createBucket()];
+    this.$buckets = [this.$createBlock()];
     this.$state = CB.CLOSED;
 
     this.$startTicker();
@@ -59,16 +59,16 @@ var CircuitBreaker = (function() {
   CB.prototype.$startTicker = function() {
     var me = this,
       bucketIndex = 0,
-      bucketDuration = this.windowDuration / this.numBuckets;
+      bucketDuration = this.windowDuration / this.numBlocks;
 
     var tick = function() {
-      if (me.$buckets.length > me.numBuckets) {
+      if (me.$buckets.length > me.numBlocks) {
         me.$buckets.shift();
       }
 
       bucketIndex++;
 
-      if (bucketIndex > me.numBuckets) {
+      if (bucketIndex > me.numBlocks) {
         bucketIndex = 0;
 
         if (me.isOpen()) {
@@ -76,13 +76,13 @@ var CircuitBreaker = (function() {
         }
       }
 
-      me.$buckets.push(me.$createBucket());
+      me.$buckets.push(me.$createBlock());
     };
 
     setInterval(tick, bucketDuration);
   };
 
-  CB.prototype.$createBucket = function() {
+  CB.prototype.$createBlock = function() {
     return {
       successes: 0,
       failures: 0,
@@ -91,11 +91,11 @@ var CircuitBreaker = (function() {
     };
   };
 
-  CB.prototype.$lastBucket = function() {
-    var numBuckets = this.$buckets.length,
-      lastBucket = this.$buckets[numBuckets - 1];
+  CB.prototype.$lastBlock = function() {
+    var numBlocks = this.$buckets.length,
+      lastBlock = this.$buckets[numBlocks - 1];
 
-    return lastBucket;
+    return lastBlock;
   };
 
   CB.prototype.$execCmd = function(command) {
@@ -111,7 +111,7 @@ var CircuitBreaker = (function() {
           return;
         }
 
-        bucket = me.$lastBucket();
+        bucket = me.$lastBlock();
         bucket[prop]++;
 
         if (me.$forced === null) {
@@ -133,7 +133,7 @@ var CircuitBreaker = (function() {
 
     fallback();
 
-    bucket = this.$lastBucket();
+    bucket = this.$lastBlock();
     bucket.shortCircuits++;
   };
 
@@ -166,7 +166,7 @@ var CircuitBreaker = (function() {
     var metrics = this.$calcMetrics();
 
     if (this.$state == CB.HALF_OPEN) {
-      var lastCmdFailed = !this.$lastBucket().successes && metrics.totalErrors > 0;
+      var lastCmdFailed = !this.$lastBlock().successes && metrics.totalErrors > 0;
 
       if (lastCmdFailed) {
         this.$state = CB.OPEN;
