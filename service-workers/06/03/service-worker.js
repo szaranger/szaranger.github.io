@@ -13,7 +13,6 @@ self.addEventListener('install', function(evt) {
           'style.css',
           'index.html',
           'index.js',
-          'analytics.js',
           'style.css'
         ]);
       })
@@ -41,6 +40,7 @@ function replayQueuedRequests() {
         }).catch(function() {
             if (Date.now() - evt > expiration) {
                 delete queue[error];
+                console.log('DELETE: queue');
             }
         });
     });
@@ -60,6 +60,7 @@ self.addEventListener('fetch', function(evt) {
                 return Response.error();
             } else {
                 console.log('RESPONSE: success');
+                replayQueuedRequests();
                 return res;
             }
         }).catch(function() {
