@@ -10,7 +10,6 @@ self.addEventListener('install', function(event) {
       .then(function(cache) {
         return cache.addAll([
           'index.html',
-          'style.css',
           'service-worker.js',
           'people.json'
         ]);
