@@ -63,9 +63,11 @@ function addRequestToBookmarks(cacheName, request) {
   var url = request.url,
     span = document.createElement('span'),
     button = document.createElement('button'),
-    li = document.createElement('li');
+    li = document.createElement('li'),
+    a = document.createElement('a');
 
-  span.textContent = url;
+  a.textContent = a.href = url;
+  a.target = '_blank';
 
   button.textContent = '✔';
   button.dataset.url = url;
@@ -80,7 +82,7 @@ function addRequestToBookmarks(cacheName, request) {
     }.bind(this));
   });
 
-  li.appendChild(span);
+  li.appendChild(a);
   li.appendChild(button);
 
   articles.appendChild(li);
