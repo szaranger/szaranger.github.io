@@ -1,6 +1,6 @@
 'use strict';
 
-var cacheName= 'dependencies-cache';
+var cacheName= 'cache';
 var currentCaches = {
   prefetch: 'prefetch-' + cacheName
 };
@@ -13,22 +13,22 @@ self.addEventListener('install', function(event) {
   ];
   event.waitUntil(
     caches.open(currentCaches.prefetch).then(function(cache) {
-      var cachePromises = urlsToPrefetch.map(function(urlToPrefetch) {
-        var url = new URL(urlToPrefetch, location.href);
+      var cachePromises = prefetchedURLs.map(function(prefetchedURLs) {
+        var url = new URL(prefetchedURLs, location.href);
 
-        url.search += (url.search ? '&' : '?') + 'cache-bust=' + now;
+        url.search += (url.search ? '&' : '?') + 'cache-bust=' + Date.now();
 
         var request = new Request(url, {mode: 'no-cors'});
 
         return fetch(request).then(function(res) {
           if (res.status >= 400) {
-            throw new Error('FAIL: request for ' + urlToPrefetch +
+            throw new Error('FAIL: request for ' + prefetchedURLs +
               ' failed, status ' + res.statusText);
           }
-
-          return cache.put(urlToPrefetch, res);
+          console.log('CACHING: Caching');
+          return cache.put(prefetchedURLs, res);
         }).catch(function(err) {
-          console.error('CACHING: Not caching ' + urlToPrefetch + ' due to ' + err);
+          console.error('CACHING: Not caching ' + prefetchedURLs + ' due to ' + err);
         });
       });
 
