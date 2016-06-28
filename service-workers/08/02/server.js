@@ -32,8 +32,8 @@ app.post('/register', function(req, res) {
 
 app.post('/sendNotification', function(req, res) {
   setTimeout(function() {
-    webPush.sendNotification(req.query.endpoint, {
-      TTL: req.query.ttl,
+    webPush.sendNotification(req.body.endpoint, {
+      TTL: req.body.ttl,
       payload: req.body.payload
     })
     .then(function() {
