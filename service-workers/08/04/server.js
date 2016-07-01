@@ -11,7 +11,7 @@ var credentials = { key: privateKey, cert: certificate };
 var httpsServer = https.createServer(credentials, app);
 var port = 3012;
 
-webPush.setGCMAPIKey('/*GCM API KEY*/);
+webPush.setGCMAPIKey('/*GCM API KEY*/');
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
