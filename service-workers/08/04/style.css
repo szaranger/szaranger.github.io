@@ -48,6 +48,14 @@ img {
   margin-top: 20px;
 }
 
+#notification-input ul {
+    text-align: left;
+}
+
+#notification-input ul li {
+    padding-bottom: 10px;
+}
+
 form {
   color: #000;
 }
