@@ -45,6 +45,31 @@ document.querySelector('#resetButton').addEventListener('click',
   }
 );
 
+function getSubscription() {
+  return navigator.serviceWorker.ready
+    .then(function(registration) {
+      return registration.pushManager.getSubscription();
+    });
+}
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js')
+    .then(function() {
+      console.log('service worker registered');
+      subscriptionBtn.removeAttribute('disabled');
+    });
+  getSubscription()
+    .then(function(subscription) {
+      if (subscription) {
+        console.log('Already subscribed', subscription.endpoint);
+        setUnsubscribeButton();
+      } else {
+        setSubscribeButton();
+      }
+    }
+  );
+}
+
 document.querySelector('#subscription-button').onclick = function() {
   fetch(baseURL + 'sendNotification?endpoint=' + endpoint, {
       method: 'post',
