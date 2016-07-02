@@ -6,6 +6,7 @@ var scope = {
 
 var endpoint;
 var baseURL = 'https://localhost:3012/';
+var subscriptionBtn = document.querySelector('#subscription-button');
 
 navigator.serviceWorker.register('service-worker.js')
 .then(function(registration) {
@@ -44,7 +45,7 @@ document.querySelector('#resetButton').addEventListener('click',
   }
 );
 
-document.querySelector('#send').onclick = function() {
+document.querySelector('#subscription-button').onclick = function() {
   fetch(baseURL + 'sendNotification?endpoint=' + endpoint, {
       method: 'post',
   });
@@ -86,11 +87,11 @@ function unsubscribe() {
 }
 
 function setSubscribeButton() {
-  subscription-button.onclick = subscribe;
-  subscription-button.textContent = 'Subscribe!';
+  subscriptionBtn.onclick = subscribe;
+  subscriptionBtn.textContent = 'Subscribe!';
 }
 
 function setUnsubscribeButton() {
-  subscription-button.onclick = unsubscribe;
-  subscription-button.textContent = 'Unsubscribe!';
+  subscriptionBtn.onclick = unsubscribe;
+  subscriptionBtn.textContent = 'Unsubscribe!';
 }
