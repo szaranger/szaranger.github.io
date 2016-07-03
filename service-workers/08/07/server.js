@@ -14,7 +14,7 @@ var port = 3012;
 var subscriptions = [];
 var pushInterval = 10;
 
-webPush.setGCMAPIKey('AIzaSyCC3YXfz4w2j3-HcXvwBQ0B_JddR95d3wo'/*process.env.GCM_API_KEY*/);
+webPush.setGCMAPIKey(/*GCM API KEY*/);
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
