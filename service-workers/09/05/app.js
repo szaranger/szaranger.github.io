@@ -1,8 +1,4 @@
 function App() {
-  this.constructor();
-}
-
-App.prototype.constructor = function constructor() {
   var self = this;
 
   Logger.log('App started');
@@ -29,14 +25,14 @@ App.prototype.constructor = function constructor() {
     if (this.serviceWorkerUtil.isServiceWorkerControllingThisApp()) {
       Logger.info('App code run as expected');
 
-      this.disableSWRegistration();
+      this.disableServiceWorkerRegistration();
     } else {
-      this.enableSWRegistration();
+      this.enableServiceWorkerRegistration();
     }
   } else {
     Logger.error('This browser does not support the service worker feature');
   }
-};
+}
 
 App.prototype.enableFeatures = function enableFeatures() {
   var scriptURL;
@@ -67,8 +63,8 @@ App.prototype.enableFeatures = function enableFeatures() {
   }
 
   this.serviceWorkerUtil.registerServiceWorker(scriptURL.value, scope.value).then(
-      this.disableSWRegistration,
-      this.enableSWRegistration
+      this.disableServiceWorkerRegistration,
+      this.enableServiceWorkerRegistration
   );
 };
 
@@ -77,17 +73,17 @@ App.prototype.disableFeatures = function disableFeatures() {
   Logger.log('Disabling cool features...');
 
   this.serviceWorkerUtil.unregisterServiceWorker().then(
-      this.enableSWRegistration,
-      this.disableSWRegistration
+      this.enableServiceWorkerRegistration,
+      this.disableServiceWorkerRegistration
   );
 };
 
-App.prototype.enableSWRegistration = function() {
+App.prototype.enableServiceWorkerRegistration = function() {
   document.getElementById('swinstall').disabled = false;
   document.getElementById('swuninstall').disabled = true;
 };
 
-App.prototype.disableSWRegistration = function() {
+App.prototype.disableServiceWorkerRegistration = function() {
   document.getElementById('swinstall').disabled = true;
   document.getElementById('swuninstall').disabled = false;
 };
