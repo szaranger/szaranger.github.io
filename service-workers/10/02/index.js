@@ -1,6 +1,6 @@
 'use strict';
 
-var CACHE_NAME = 'cache-and-then-network';
+var CACHE_NAME = 'network-only';
 var SOURCE_URL = 'https://cdn.rawgit.com/szaranger/szaranger.github.io/master/service-workers/03/02/events';
 var networkDelayText  = document.getElementById('network-delay');
 var networkDisabledCheckbox = document.getElementById('network-disabled-checkbox');
