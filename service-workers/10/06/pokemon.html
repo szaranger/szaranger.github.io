@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+  #container { margin: 0 auto; width: 300px;}
+  </style>
+  <title>Store</title>
+</head>
+<body>
+  <div id="container">
+    <h1>#{{national_id}} {{name}}</h1>
+    <p><button onclick="window.location.reload();">Reload</button></p>
+
+    <h2>Time</h2>
+    <p>Fetching model: <span id="fetching-time-label"></span></p>
+    <p>Interpolation: <span id="interpolation-time-label"></span></p>
+    <p>Loading: <span id="loading-time-label"></span></p>
+    <p><img src="https://crossorigin.me/http://pokeapi.co/media/img/{{national_id}}.png" /></p>
+
+    <table>
+      <tr>
+        <td>Attack:</td> <td>{{attack}}</td>
+      </tr>
+      <tr>
+        <td>Defense:</td> <td>{{defense}}</td>
+      </tr>
+      <tr>
+        <td>Speed:</td> <td>{{speed}}</td>
+      </tr>
+    </table>
+  </div>
+  <script defer src="pokemon.js"></script>
+</body>
+</html>
